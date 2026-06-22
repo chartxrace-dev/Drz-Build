@@ -20,19 +20,19 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Smart Decode Keystore
+    # NAYA FIX: Agar keystore nahi hai, toh automatic generate kar lo
+    - name: Generate Debug Keystore
       run: |
         if [ -f "debug.keystore.base64" ]; then
           base64 -d debug.keystore.base64 > debug.keystore
-          echo "Keystore decoded successfully."
         else
-          echo "No base64 keystore found. Moving to normal build."
+          echo "Generating default debug keystore to bypass error..."
+          keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
         fi
 
     - name: Setup Gradle Cache
       uses: gradle/actions/setup-gradle@v3
 
-    # NAYA STEP: Yeh step automatically gradlew files bana dega
     - name: Generate Gradle Wrapper
       run: gradle wrapper
 
