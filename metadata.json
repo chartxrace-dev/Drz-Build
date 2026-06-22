@@ -1,0 +1,6 @@
+{
+  "name": "CodeForge",
+  "description": "Mobile Android IDE tailored for coders to fetch GitHub repos and simulate on-device compilation for apps.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
