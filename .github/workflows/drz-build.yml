@@ -32,6 +32,10 @@ jobs:
     - name: Setup Gradle Cache
       uses: gradle/actions/setup-gradle@v3
 
+    # NAYA STEP: Yeh step automatically gradlew files bana dega
+    - name: Generate Gradle Wrapper
+      run: gradle wrapper
+
     - name: Make Gradle Wrapper Executable
       run: chmod +x ./gradlew
 
@@ -44,4 +48,3 @@ jobs:
         name: DRZ-Build-APK
         path: "**/build/outputs/apk/debug/*.apk"
         retention-days: 7
-        
